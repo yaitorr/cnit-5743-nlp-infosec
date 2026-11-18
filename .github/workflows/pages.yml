@@ -1,0 +1,57 @@
+name: publish-results
+
+# Exports notebooks to static HTML and deploys them with GitHub's own Pages actions
+# (no gh-pages branch). The notebooks read only committed aggregate files in results/,
+# so no dataset is needed here.
+#
+# One-time repo setting: Settings > Pages > Build and deployment > Source = "GitHub Actions".
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notebooks/**"
+      - "results/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Let an in-progress deployment finish rather than cancelling it halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # All actions are pinned to full commit SHAs rather than movable tags.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install uv (pinned)
+        run: pipx install uv==0.11.26
+
+      - name: Export notebook to static HTML
+        run: |
+          uv run --no-dev --group notebooks \
+            marimo export html notebooks/overview.py -o site/index.html --no-include-code
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
