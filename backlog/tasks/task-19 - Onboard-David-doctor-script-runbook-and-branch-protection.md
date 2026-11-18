@@ -30,7 +30,7 @@ David (policy and threat lead) needs to run and contribute to the project from h
 - [x] #5 AGENTS.md documents the collaboration workflow: one branch per task named <name>/task-N-slug, PR into main, tasks claimed by assignee, no direct pushes to main
 - [x] #6 main is protected on GitHub: pull request required with one approval from the code owner, owner can bypass, no force pushes or deletions
 - [x] #7 An optional /onboard command points Claude Code at ONBOARDING.md
-- [ ] #8 The Backlog instruction block is refreshed to the current CLI version
+- [x] #8 The Backlog instruction block is refreshed to the current CLI version
 - [ ] #9 CODEOWNERS names the repo owner and GitHub reports no errors for it once it is on main
 <!-- AC:END -->
 
