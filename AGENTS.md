@@ -2,6 +2,8 @@
 
 Rules for AI coding agents working in this repository. Humans: these are also the project's working rules.
 
+New to this repository? Follow `ONBOARDING.md` (Claude Code: `/onboard`).
+
 ## Data handling (the repo is public)
 
 - Never commit anything under `data/` or `artifacts/`, raw chats, Sentinel indexes, or embeddings.
@@ -33,6 +35,18 @@ not for the author.
 Agents scaffold plumbing, tooling, and checks. The core logic (dataset loaders, metrics, and the evaluation
 harness) is designed and written by the project authors; agents explain options and review rather than
 author it unprompted.
+
+## Collaboration workflow
+
+- **One branch per task**, named `<name>/task-N-slug` (for example `yai/task-3-loader-interface`).
+  `main` is protected: never push to it directly.
+- **Claim the task first** in Backlog: `backlog task edit TASK-N -s "In Progress" -a @<github-username>`.
+  One assignee per task. Read `backlog instructions task-execution` before starting.
+- **Open a pull request into `main`.** Link the task and say how each Definition of Done item was met.
+  The repo owner reviews and merges. Backlog changes (status, notes, final summary) travel in the same branch.
+- **Keep commits focused**, with messages that explain why, not only what.
+- **Each contributor keeps their own local copy of the data.** Never share it through the repo, Teams, or SharePoint.
+- **Ask the repo owner** before changing repository settings, other people's tasks, or this file's rules.
 
 ## Conventions
 
