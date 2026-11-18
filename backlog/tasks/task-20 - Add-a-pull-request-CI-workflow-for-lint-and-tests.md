@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: '2026-11-18T11:47:00Z'
-updated_date: '2026-11-18T11:50:00Z'
+updated_date: '2026-11-18T11:53:00Z'
 labels:
   - ci
   - boilerplate
@@ -31,8 +31,8 @@ Our Definition of Done says ruff and pytest must pass when code changes, but tod
 - [ ] #4 CI needs no dataset: the checks pass on a clean checkout, including the data hygiene test
 - [x] #5 Only the shared base and dev dependencies are installed, not the Sentinel or d1 extras; what this leaves uncovered is documented
 - [ ] #6 A deliberately failing change on a throwaway branch is shown to fail the check, then discarded
-- [ ] #7 A decision is recorded on adding a Windows runner (it would exercise the doctor unit tests and hygiene test on Windows, where the onboarding path is untested)
-- [ ] #8 A decision is recorded on making the check required in branch protection; no settings change without the owner's explicit approval
+- [x] #7 A decision is recorded on adding a Windows runner (it would exercise the doctor unit tests and hygiene test on Windows, where the onboarding path is untested)
+- [x] #8 A decision is recorded on making the check required in branch protection; no settings change without the owner's explicit approval
 <!-- AC:END -->
 
 ## Definition of Done
@@ -59,4 +59,6 @@ Our Definition of Done says ruff and pytest must pass when code changes, but tod
 <!-- SECTION:NOTES:BEGIN -->
 Implemented .github/workflows/ci.yml: pull_request into main, contents: read, matrix ubuntu-latest + windows-latest (fail-fast off), astral-sh/setup-uv v10.3.3 pinned by SHA with uv 0.11.26, uv sync --locked then ruff check, ruff format --check, pytest. Input names verified against action.yml at the pinned commit. Locally verified: YAML structure and pins; the exact commands pass on a fresh clone with no data (18 tests). Not yet proven: the workflow actually running on GitHub (AC 1, 4).
 Tentative decisions for the owner to confirm: (AC 7) include the Windows runner; it exercises the doctor unit tests and hygiene test on Windows, partly covering the untested onboarding path, at the cost of slower runs. (AC 8) require both check (ubuntu-latest) and check (windows-latest) in branch protection only after CI has run green on a few PRs; changing that setting needs the owner explicit approval.
+
+Owner decisions (2026-11-18): (AC 7) Linux only for now. The Windows leg was dropped to keep CI simple; the Windows onboarding path stays untested and the README says so. A matrix can be added later. (AC 8) Do not require the check yet: revisit after CI has run green on a few PRs, then require the single check named "check" in branch protection, with the owner explicit approval at that time. No settings changed.
 <!-- SECTION:NOTES:END -->
