@@ -3,7 +3,8 @@ id: TASK-2
 title: Inspect PAN-2012 structure and count positives
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - data
   - boilerplate
@@ -27,3 +28,12 @@ Measuring how far into a conversation each detector first flags it requires know
 - [ ] #3 docs/spike-b-tolerances.md updated: gate 3 restated (zero flips, kept, or loosened) with a dated decision-log row
 - [ ] #4 No raw conversation text committed or shown in any notebook
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->

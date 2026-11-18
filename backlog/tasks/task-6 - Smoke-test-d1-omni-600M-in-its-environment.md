@@ -3,14 +3,15 @@ id: TASK-6
 title: Smoke-test d1-omni-600M in its environment
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - d1
   - boilerplate
 milestone: m-0
 dependencies: []
 references:
-  - 'https://huggingface.co/LiquidAI/d1-omni-600M'
+  - https://huggingface.co/LiquidAI/d1-omni-600M
 type: task
 ordinal: 6000
 ---
@@ -28,3 +29,12 @@ The d1 extra was locked but never installed or run. d1 executes code shipped wit
 - [ ] #3 Device and dtype used (MPS or CPU) and approximate latency per call recorded
 - [ ] #4 Remote code reviewed at the pinned revision and a one-line methods note drafted
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->

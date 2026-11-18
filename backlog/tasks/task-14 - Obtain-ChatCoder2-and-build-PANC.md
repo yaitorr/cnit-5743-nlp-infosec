@@ -3,14 +3,15 @@ id: TASK-14
 title: Obtain ChatCoder2 and build PANC
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - data
 milestone: m-1
 dependencies:
   - TASK-3
 references:
-  - 'https://gitlab.com/early-sexual-predator-detection/eSPD-datasets'
+  - https://gitlab.com/early-sexual-predator-detection/eSPD-datasets
 type: task
 ordinal: 14000
 ---
@@ -28,3 +29,12 @@ PANC (Vogt et al., 2021) keeps grooming chats at full length, which measuring ho
 - [ ] #3 PANC loads through the loader interface with no harness changes
 - [ ] #4 Data stays local and tests/test_repo_hygiene.py passes
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->

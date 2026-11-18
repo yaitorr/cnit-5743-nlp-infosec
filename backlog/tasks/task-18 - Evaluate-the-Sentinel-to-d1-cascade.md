@@ -3,7 +3,8 @@ id: TASK-18
 title: Evaluate the Sentinel-to-d1 cascade
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - experiment
   - cascade
@@ -27,3 +28,12 @@ Sentinel screens everything and d1 takes a closer look at what Sentinel flags. T
 - [ ] #2 Early-detection and false-positive results compared with each detector alone, using the same metrics and splits
 - [ ] #3 A prediction of the cascade's effect on recall and false positives is written before running and compared with the outcome
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->

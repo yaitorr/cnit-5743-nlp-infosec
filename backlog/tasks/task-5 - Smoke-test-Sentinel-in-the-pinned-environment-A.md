@@ -3,7 +3,8 @@ id: TASK-5
 title: Smoke-test Sentinel in the pinned environment (A)
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - sentinel
   - boilerplate
@@ -27,3 +28,12 @@ The Sentinel extra was resolved and locked but never installed or run. Environme
 - [ ] #3 Sentinel's own test suite at the pinned commit passes in environment A (result recorded)
 - [ ] #4 The command sequence is documented in the README
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->

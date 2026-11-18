@@ -3,7 +3,8 @@ id: TASK-15
 title: False-positive analysis on benign chat
 status: To Do
 assignee: []
-created_date: '2026-11-18 11:01'
+created_date: 2026-11-18 11:01
+updated_date: '2026-11-18T11:13:00Z'
 labels:
   - bias
   - experiment
@@ -12,7 +13,7 @@ dependencies:
   - TASK-11
   - TASK-13
 references:
-  - 'https://doi.org/10.48550/arXiv.2106.06213'
+  - https://doi.org/10.48550/arXiv.2106.06213
 type: task
 ordinal: 15000
 ---
@@ -30,3 +31,12 @@ Bias focus area: which harmless conversations trip each detector? CONDA adds Dot
 - [ ] #3 Slang-heavy versus standard-English comparison with a stated grouping method
 - [ ] #4 Failure patterns described qualitatively without quoting raw chat; results aggregate only
 <!-- AC:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 If code changed: ruff check and pytest pass
+- [ ] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
+- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
+- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+<!-- DOD:END -->
