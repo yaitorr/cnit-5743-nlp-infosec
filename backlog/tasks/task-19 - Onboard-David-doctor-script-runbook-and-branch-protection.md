@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: '2026-11-18T11:25:00Z'
-updated_date: '2026-11-18T11:28:00Z'
+updated_date: '2026-11-18T11:32:00Z'
 labels:
   - onboarding
   - boilerplate
@@ -28,9 +28,10 @@ David (policy and threat lead) needs to run and contribute to the project from h
 - [x] #3 Version-comparison logic has unit tests
 - [x] #4 ONBOARDING.md takes an agent from a fresh machine to a claimed first task, with macOS and Windows commands; Windows steps are marked untested until David runs them
 - [x] #5 AGENTS.md documents the collaboration workflow: one branch per task named <name>/task-N-slug, PR into main, tasks claimed by assignee, no direct pushes to main
-- [x] #6 main is protected on GitHub: pull request required, no required approvals, no force pushes or deletions
+- [x] #6 main is protected on GitHub: pull request required with one approval from the code owner, owner can bypass, no force pushes or deletions
 - [x] #7 An optional /onboard command points Claude Code at ONBOARDING.md
 - [ ] #8 The Backlog instruction block is refreshed to the current CLI version
+- [ ] #9 CODEOWNERS names the repo owner and GitHub reports no errors for it once it is on main
 <!-- AC:END -->
 
 ## Definition of Done
@@ -61,4 +62,6 @@ Doctor: single stdlib-only scripts/doctor.py (one implementation for macOS and W
 Tests: 18 pass (version comparison is numeric, covering the 1.9 vs 1.52 case).
 Branch protection applied to main: PR required, 0 approvals, admins not bound (owner can bypass), no force pushes or deletions. Read back via the API. Stronger option not taken: require 1 approval plus a CODEOWNERS file so only the owner can approve contributor PRs.
 Open: AC 8 (refresh Backlog block via backlog agents --update-instructions, interactive; select AGENTS.md only so the block is not duplicated in CLAUDE.md). A collaborator invite needs the contributor GitHub username.
+
+Update: switched branch protection from 0 to 1 required approval with code owner review required (read back via API), and added .github/CODEOWNERS naming the repo owner, so only the owner approval counts. The owner can still bypass for own PRs (admins not bound). CODEOWNERS is read from the base branch, so its validity can only be checked after it is merged to main (AC 9).
 <!-- SECTION:NOTES:END -->
