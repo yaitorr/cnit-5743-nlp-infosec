@@ -19,13 +19,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Linux only for now (owner decision). A Windows leg could be added later with a matrix.
   check:
-    name: check (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false # a Windows-only failure should not hide a Linux result
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
     steps:
       # All actions are pinned to full commit SHAs rather than movable tags.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
