@@ -1,0 +1,50 @@
+# --- DATA GUARDRAILS (this repo is PUBLIC) -------------------------------------
+# PAN-2012 / PANC / ChatCoder2 / CONDA contain real or sensitive chats and some
+# may not be redistributed. Nothing under data/ is tracked except its README.
+data/*
+!data/README.md
+
+# Anything derived from raw chats: Sentinel indexes store the conversations
+# themselves, and embeddings can be inverted back to text (Morris et al., 2023).
+artifacts/*
+!artifacts/.gitkeep
+
+# Belt and braces: raw-data formats and model weights, wherever they land.
+*.xml
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.parquet
+*.feather
+*.npy
+*.npz
+*.safetensors
+*.pt
+*.bin
+*.faiss
+
+# Only AGGREGATE results are committed (metrics, curves, figures).
+# Per-conversation outputs go under results/private/.
+results/private/
+
+# Local build of the static results site (published from CI to the gh-pages branch).
+site/
+__marimo__/
+
+# --- Python / tooling ------------------------------------------------------------
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+.env
+.env.*
+
+# Generated deliverables are named per course convention; keep dist/ contents local
+# unless deliberately added with `git add -f`.
+dist/*
+!dist/.gitkeep
