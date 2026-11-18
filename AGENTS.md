@@ -54,7 +54,7 @@ author it unprompted.
 - Deliverable exports go in `dist/` named `YYYY-MM-DD_ytorresv_CNIT-57400_<work>.<ext>`.
 
 <!-- BACKLOG.MD GUIDELINES START -->
-<!-- backlog.md-instructions-version: 1.52.0 -->
+<!-- backlog.md-instructions-version: 1.55.3 -->
 <CRITICAL_INSTRUCTION>
 
 ## Backlog.md Workflow
