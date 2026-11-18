@@ -1,0 +1,71 @@
+[project]
+name = "cnit-5743-nlp-infosec"
+version = "0.1.0"
+description = "Early detection of online grooming: Roblox Sentinel vs. Liquid AI d1-omni-600M, and what each design costs children's privacy."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+
+# Shared harness code only (loaders, metrics, plotting). Detector stacks live in
+# the extras below so each one can pin its own, mutually incompatible, versions.
+dependencies = [
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+]
+
+[project.optional-dependencies]
+# Sentinel's `sbert` extra pins sentence-transformers<4 -> transformers<5 and numpy<2.
+sentinel = ["sentinel[sbert]"]
+# d1-omni-600M ships its own code (trust_remote_code) and needs transformers>=5.15.
+d1 = [
+    "transformers>=5.15",
+    "torch",
+    "torchvision",
+    "pillow",
+    "soundfile",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.8",
+]
+# Analysis notebooks + static export. Notebooks read committed aggregate results only,
+# never data/, so the exported site can be built anywhere (including CI).
+notebooks = [
+    "marimo",
+    "matplotlib",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+# The two detector stacks cannot be resolved together; tell uv to resolve them separately.
+conflicts = [
+    [{ extra = "sentinel" }, { extra = "d1" }],
+]
+
+[tool.uv.sources]
+# Pinned to an exact commit (Sentinel v2.0.0 line, default branch as of 2026-08-18 push).
+sentinel = { git = "https://github.com/Roblox/Sentinel", rev = "66c69854e806bd9f5c866379b6c75f3fcb4d2e6c" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/grooming_eval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# marimo cells display their last bare expression, which B018 flags as "useless".
+"notebooks/*.py" = ["B018"]
