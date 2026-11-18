@@ -1,11 +1,11 @@
 ---
 id: TASK-19
 title: 'Onboard David: doctor script, runbook, and branch protection'
-status: In Progress
+status: Done
 assignee:
   - '@yaitorr'
 created_date: '2026-11-18T11:25:00Z'
-updated_date: '2026-11-18T11:32:00Z'
+updated_date: '2026-11-18T11:41:00Z'
 labels:
   - onboarding
   - boilerplate
@@ -31,7 +31,7 @@ David (policy and threat lead) needs to run and contribute to the project from h
 - [x] #6 main is protected on GitHub: pull request required with one approval from the code owner, owner can bypass, no force pushes or deletions
 - [x] #7 An optional /onboard command points Claude Code at ONBOARDING.md
 - [x] #8 The Backlog instruction block is refreshed to the current CLI version
-- [ ] #9 CODEOWNERS names the repo owner and GitHub reports no errors for it once it is on main
+- [x] #9 CODEOWNERS names the repo owner and GitHub reports no errors for it once it is on main
 <!-- AC:END -->
 
 ## Definition of Done
@@ -40,7 +40,7 @@ David (policy and threat lead) needs to run and contribute to the project from h
 - [x] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
 - [x] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
 - [x] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
-- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+- [x] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -64,4 +64,16 @@ Branch protection applied to main: PR required, 0 approvals, admins not bound (o
 Open: AC 8 (refresh Backlog block via backlog agents --update-instructions, interactive; select AGENTS.md only so the block is not duplicated in CLAUDE.md). A collaborator invite needs the contributor GitHub username.
 
 Update: switched branch protection from 0 to 1 required approval with code owner review required (read back via API), and added .github/CODEOWNERS naming the repo owner, so only the owner approval counts. The owner can still bypass for own PRs (admins not bound). CODEOWNERS is read from the base branch, so its validity can only be checked after it is merged to main (AC 9).
+
+Close-out: PR #1 merged. GitHub reports 0 CODEOWNERS errors for main (criterion 9). The repo owner confirmed in chat that they understand the work and are comfortable with it (Definition of Done item 5).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Onboarding for a second contributor is in place and merged (PR #1). Added scripts/doctor.py (read-only, standard-library-only environment check for macOS and Windows, with a --full mode), ONBOARDING.md and an optional /onboard command, the collaboration workflow in AGENTS.md, a refreshed Backlog instruction block (1.55.3, which sets the doctor minimum CLI version), and CODEOWNERS. main is protected: pull request required, one code-owner approval, no force pushes or deletions, owner can bypass.
+
+Verification: ruff and pytest pass (18 tests); doctor --full is green on macOS; a simulated bare machine and a simulated outdated CLI behave correctly; GitHub reports 0 CODEOWNERS errors on main; the PR showed REVIEW_REQUIRED, confirming the protection is enforced. The repo owner confirmed in chat that they understand the work and are comfortable with it.
+
+Risks and follow-ups: Windows commands are untested until the contributor runs the doctor. The collaborator invite still needs the contributor GitHub username. The repo has no PR checks, so the lint and test Definition of Done item is not enforced automatically; a pull-request CI workflow is a possible follow-up (not created). Contributors now need Backlog CLI 1.55.3 or newer.
+<!-- SECTION:FINAL_SUMMARY:END -->
