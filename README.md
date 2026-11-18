@@ -24,6 +24,23 @@ UV_PROJECT_ENVIRONMENT=.venv-sentinel uv run pytest
 The cascade runs in two stages and hands off through files in `artifacts/`:
 Sentinel scores (sentinel env), then d1 reviews the flagged conversations (d1 env).
 
+## Checks
+
+Every pull request into `main` runs `.github/workflows/ci.yml` on Linux and Windows:
+`uv sync --locked`, `ruff check`, `ruff format --check`, and `pytest`. To run the same checks locally:
+
+```bash
+uv sync --locked && uv run ruff check . && uv run ruff format --check . && uv run pytest -q
+```
+
+**What CI does not cover.** It installs only the shared and dev dependencies, so:
+
+- The Sentinel and d1 environments are never built or run in CI (they are large, and d1 downloads model weights).
+- Nothing that needs data runs: CI has no datasets. The hygiene test only checks that none are tracked.
+- Model behavior and experiment results are not checked, only the code around them.
+- `scripts/doctor.py` is covered by its unit tests, not by running its real tool checks on the runner.
+- The results-site export is built by the Pages workflow on pushes to `main`, not on pull requests.
+
 ## Layout
 
 | Path | Purpose |
