@@ -38,6 +38,23 @@ Agents scaffold plumbing, tooling, and checks. The core logic (dataset loaders, 
 harness) is designed and written by the project authors; agents explain options and review rather than
 author it unprompted.
 
+## Coding preferences
+
+- **Prefer idiomatic solutions.** Write code the way an experienced practitioner of that language or tool
+  would: standard-library and community idioms (for example `pathlib`, dataclasses, comprehensions, context
+  managers, `uv`/`ruff`/`pytest` conventions) over generic or hand-rolled patterns. If the existing code
+  works but a more idiomatic form exists, say so.
+- **Check your work against an adversarial reviewer sub-agent** before calling it done. Brief the reviewer
+  to look for problems, not to approve, and fix or explicitly answer each finding. Pick the reviewer by
+  what changed:
+  - **Architectural reviewer** when changing contracts or module seams (loader interfaces, metric
+    signatures, harness boundaries, public function shapes, cross-module data formats).
+  - **Quality reviewer** every time tests are introduced or changed: do they assert real behavior, cover
+    edge cases and failure modes, avoid tautologies and over-mocking, and fail when the code is wrong?
+  - **Code reviewer** for clarity and cohesiveness: duplication (DRY), needless complexity or scope (keep
+    it simple, do less), naming, and whether each unit does one thing.
+- The reviewers never see raw chat data: give them code and aggregate outputs only (see Data handling).
+
 ## Finding work in Backlog
 
 Agents: read the board with the CLI, using `--plain`, and never edit files in `backlog/` by hand.
