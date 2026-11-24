@@ -70,7 +70,7 @@ The corpus ships with a fixed train/test split (30% released as training); we ke
 ## Class profile
 
 Positives and negatives differ in shape, so length and author count are possible shortcuts that a
-detector could use instead of grooming content (test split; train is similar).
+detector could use instead of grooming content (test split shown; train has the same pattern, with a longest positive of 1,160 messages).
 
 | | Positives | Negatives |
 |---|---|---|
@@ -79,8 +79,8 @@ detector could use instead of grooming content (test split; train is similar).
 | Share with at least 6 non-empty messages | 48.4% | 25.5% |
 | Share with exactly two authors | 50.5% | 68.7% |
 
-All conversations that exceed the 150-message cap are negatives in the test split (maximum positive
-length 150). TASK-15 should test whether detectors rely on length or author count. Half of the
+In the test split no positive exceeds the 150-message cap (maximum 150), so all 13 over-cap
+conversations are negatives; in train the longest positive has 1,160 non-empty messages. TASK-15 should test whether detectors rely on length or author count. Half of the
 positives have fewer than 6 messages, which is the minimum length the VTPAN and PANC filters keep.
 
 ## Data quality and processing decisions
