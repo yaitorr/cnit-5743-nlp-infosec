@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T11:35:00Z'
+updated_date: '2026-11-24T11:37:00Z'
 labels:
   - data
   - boilerplate
@@ -35,7 +35,7 @@ Measuring how far into a conversation each detector first flags it requires know
 <!-- DOD:BEGIN -->
 - [x] #1 If code changed: ruff check and pytest pass
 - [x] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
-- [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
+- [x] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
 - [x] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
 - [x] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
