@@ -4,7 +4,7 @@ title: False-positive analysis on benign chat
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T10:38:00Z'
+updated_date: '2026-11-24T12:16:00Z'
 labels:
   - bias
   - experiment
@@ -42,3 +42,9 @@ Bias focus area: which harmless conversations trip each detector? CONDA adds Dot
 - [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
 - [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Input from TASK-2 (see docs/pan2012-structure.md). Check whether detectors rely on shortcuts: test positives average 33.5 non-empty messages vs 12.7 for negatives, and 50.5% of positives have exactly two authors vs 68.7% of negatives. Source (Omegle, IRC, Perverted-Justice) is not labelled in the data, so author count and length are only rough proxies. Hard negatives per the literature: sexual chat between consenting adults (Omegle). Evaluate on the full split and on the >=6 messages / >=2 authors flagged slice.
+<!-- SECTION:NOTES:END -->

@@ -4,7 +4,7 @@ title: Design the dataset loader interface
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T10:38:00Z'
+updated_date: '2026-11-24T12:16:00Z'
 labels:
   - data
   - boilerplate
@@ -39,3 +39,9 @@ The main data is PAN-2012 now and PANC later (full-length ChatCoder2 chats), plu
 - [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
 - [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Input from TASK-2 (see docs/pan2012-structure.md, results/pan2012_structure.json). Decided: position is counted in non-empty messages; VTPAN-style conditions (>=6 non-empty messages, >=2 authors) are flags on each conversation, never deletions; full train/test splits are primary; assume PANC and VTPAN are unavailable. Open: keep single-author conversations (12,773 train / 29,561 test)? Apply one text-cleaning pipeline (unescape, whitespace) identically for Sentinel and d1. Facts: positive = conversation with a problem-1 predator author; line numbers are contiguous 1..n; time is HH:MM only, so do not use it for ordering; 27 test / 13 train conversations have no non-empty message.
+<!-- SECTION:NOTES:END -->
