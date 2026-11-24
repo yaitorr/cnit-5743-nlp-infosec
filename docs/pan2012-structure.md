@@ -33,7 +33,7 @@ not perfectly applied: 55 train and 13 test conversations exceed 150 messages (m
 Consequence: the earliest-detection position is bounded by one segment, not a whole relationship,
 which is the motivation for PANC.
 
-### Sources
+### Data sources in the corpus
 
 Per the paper (section 2.1 and Table 1), positives come only from Perverted-Justice (PJ) chat logs,
 and negatives are largely Omegle (about 95% two-user) and IRC logs. The sources differ in style, so a
