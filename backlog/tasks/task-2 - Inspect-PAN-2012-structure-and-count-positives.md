@@ -1,11 +1,11 @@
 ---
 id: TASK-2
 title: Inspect PAN-2012 structure and count positives
-status: In Progress
+status: Done
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T12:14:00Z'
+updated_date: '2026-11-24T12:18:00Z'
 labels:
   - data
   - boilerplate
