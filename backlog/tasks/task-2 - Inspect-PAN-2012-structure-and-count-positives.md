@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T12:06:00Z'
+updated_date: '2026-11-24T12:14:00Z'
 labels:
   - data
   - boilerplate
@@ -58,6 +58,8 @@ Owner decisions (2026-11-24) after reading the eSPD-datasets processing code: po
 Added class profile (positives vs negatives: length, author count) to the script, JSON and docs; corrected VTPAN origin to Villatoro-Tello et al. 2012 per Vogt et al. 2021 s2.2.2. Test positives never exceed 150 messages (all over-cap conversations are negatives); positives average 33.5 non-empty messages vs 12.7 for negatives, a shortcut risk for TASK-15.
 
 Added a Sources section to docs/pan2012-structure.md and docs/references/README.md (citations, links, what each source supports; no PDFs committed, since redistribution terms are unchecked).
+
+Evaluation-design decisions (owner, 2026-11-24): VTPAN-style conditions become loader flags, not deletions; full splits primary with the flagged slice reported alongside; no threshold tuning on test; only 2 of 254 test predator ids appear in train. Open items recorded in docs/pan2012-structure.md for TASK-3, TASK-10, TASK-15.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

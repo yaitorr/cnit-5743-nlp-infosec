@@ -113,6 +113,24 @@ exceed 150).
   eSPD repository's `dos2unix` copies, while the problem-1 and predator list files match exactly.
   Parsing is unaffected.
 
+### Evaluation design (project owner, 2026-11-24)
+
+- **Flags, not deletions.** The loader (TASK-3) exposes VTPAN-style conditions (at least 6 non-empty
+  messages, at least two authors) as flags on every conversation. Nothing is removed from the corpus.
+- **Full splits are primary.** Results are reported on the full train and test splits (P = 3,737 test),
+  and additionally on the flagged slice, so the dependence on that slice is visible.
+- **No tuning on test.** Operating thresholds are chosen on train or a validation split carved from
+  train; any development subsample is seeded, recorded, and used only for development.
+- **Author leakage is low.** Only 2 of the 254 test predator ids also appear among the 142 train
+  predators, so train-to-test performance mostly reflects content, not predator identity.
+
+### Open items for later tasks
+
+- Whether single-author conversations (12,773 train, 29,561 test) stay in the evaluation.
+- How to set the latency penalty parameter `p` (TASK-10) without message-level risk labels.
+- One text-cleaning pipeline (unescape, whitespace) applied identically to Sentinel and d1.
+- Whether detectors rely on length or author count as shortcuts (TASK-15).
+
 ## Consequence for Spike B gate 3
 
 One flipped positive moves recall by about 1/3,737, or 0.027%. We restated gate 3 as zero flipped

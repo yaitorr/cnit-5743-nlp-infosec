@@ -177,6 +177,7 @@
     "multi_author_conversations_sharing_author_set_with_another": 8730,
     "positives_with_no_suspicious_line_in_problem2": 2903
   },
+  "predator_ids_shared_between_train_and_test": 2,
   "problem2_test": {
     "conversations_with_suspicious_lines": 834,
     "suspicious_lines": 6478

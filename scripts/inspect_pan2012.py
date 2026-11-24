@@ -154,6 +154,7 @@ def main(root: Path) -> None:
         "test": inspect_split(
             test_dir / f"{PAN}-test-corpus-2012-05-17.xml", test_pred, suspicious
         ),
+        "predator_ids_shared_between_train_and_test": len(train_pred & test_pred),
         "problem2_test": {
             "conversations_with_suspicious_lines": len(suspicious),
             "suspicious_lines": sum(map(len, suspicious.values())),
