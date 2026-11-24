@@ -36,6 +36,17 @@ Agents scaffold plumbing, tooling, and checks. The core logic (dataset loaders, 
 harness) is designed and written by the project authors; agents explain options and review rather than
 author it unprompted.
 
+## Finding work in Backlog
+
+Agents: read the board with the CLI, using `--plain`, and never edit files in `backlog/` by hand.
+
+- `backlog task list --labels track-policy --plain` (also `track-tech`, `track-both`): work by track.
+- `backlog task list --labels pickup-ready --unassigned --plain`: can start now, nobody has claimed it.
+- `backlog task view TASK-N --plain`: description, acceptance criteria, notes, and the dependency graph.
+  A task whose dependencies are not Done cannot really start, whatever its label.
+- Show your human the options and let them choose. Do not claim, start, or reassign a task for them
+  unless they ask. Full walkthrough: "Reading the backlog from the command line" in `ONBOARDING.md`.
+
 ## Collaboration workflow
 
 - **One branch per task**, named `<name>/task-N-slug` (for example `yai/task-3-loader-interface`).
