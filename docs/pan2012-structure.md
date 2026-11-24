@@ -67,6 +67,13 @@ section 4.2). 2,903 of the 3,737 positives have no problem-2 line.
 
 The corpus ships with a fixed train/test split (30% released as training); we keep it.
 
+Cross-check against the literature: Villatoro-Tello et al. (2012, Tables 1 and 5) report 66,928 train
+and 155,129 test conversations, one more than our 66,927 and 155,128. Our counts equal the number of
+`<conversation>` tags, and every conversation id is unique, so we use ours; we have not explained the
+off-by-one. They also label a conversation suspicious when at least one predator appears in it, the
+same positive definition we use. Their VTPAN filtering raised the training positive rate from about
+3% to about 12% (798 of 6,588), so the full split gives a more realistic prevalence.
+
 ## Class profile
 
 Positives and negatives differ in shape, so length and author count are possible shortcuts that a
