@@ -4,6 +4,9 @@ Purdue CNIT 57400 group project. We run two different detectors, Roblox Sentinel
 Liquid AI d1-omni-600M (plus a cascade of the two), on the same chat data and ask how early each
 one catches grooming, who it wrongly flags, and what it has to retain about children's chats.
 
+New contributor, or working with an AI agent? Start with [`ONBOARDING.md`](ONBOARDING.md): it checks
+your tools, walks through the project, and helps you pick a first task from the Backlog.
+
 ## Setup
 
 Sentinel and d1 need incompatible dependency versions (Sentinel pins `transformers<5` and

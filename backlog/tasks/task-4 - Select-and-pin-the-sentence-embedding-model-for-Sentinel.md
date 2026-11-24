@@ -4,10 +4,12 @@ title: Select and pin the sentence-embedding model for Sentinel
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-18T11:13:00Z'
+updated_date: '2026-11-24T10:38:00Z'
 labels:
   - sentinel
   - boilerplate
+  - pickup-ready
+  - track-tech
 milestone: m-0
 dependencies: []
 references:
@@ -27,6 +29,7 @@ Sentinel needs a named sentence-transformers encoder, and every score, the noise
 - [ ] #1 Encoder name and exact model revision recorded in the README pinned-artifacts table
 - [ ] #2 Rationale recorded, including compatibility with the planned embedding-inversion test
 - [ ] #3 Model loads offline after the first download
+- [ ] #4 Encoder proposed by the assignee and discussed with Yai, and the agreed choice recorded in the README table, before TASK-5 starts
 <!-- AC:END -->
 
 ## Definition of Done
@@ -37,3 +40,9 @@ Sentinel needs a named sentence-transformers encoder, and every score, the noise
 - [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
 - [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Hand-off: the assignee proposes the encoder, then discusses it with Yai (AC #4). TASK-16 needs an inversion model for the chosen encoder, so check availability before proposing.
+<!-- SECTION:NOTES:END -->
