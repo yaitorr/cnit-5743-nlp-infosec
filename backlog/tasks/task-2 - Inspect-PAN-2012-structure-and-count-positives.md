@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T12:02:00Z'
+updated_date: '2026-11-24T12:06:00Z'
 labels:
   - data
   - boilerplate
@@ -56,6 +56,8 @@ Adversarial code review (AGENTS.md gate) fixed: missing label files now raise, r
 Owner decisions (2026-11-24) after reading the eSPD-datasets processing code: position is counted in non-empty messages; assume VTPAN and PANC are unavailable and clean PAN-2012 ourselves (eSPD is a reference only). Added measurements: 6,453 test / 2,976 train empty-text messages; 27 / 13 conversations with no non-empty message; line numbers contiguous 1..n; corpus XMLs are CRLF so their sha256 differs from eSPD's dos2unix copies (label files match). Documented in docs/pan2012-structure.md and data/README.md. Handoff for TASK-3: position unit and data scope above.
 
 Added class profile (positives vs negatives: length, author count) to the script, JSON and docs; corrected VTPAN origin to Villatoro-Tello et al. 2012 per Vogt et al. 2021 s2.2.2. Test positives never exceed 150 messages (all over-cap conversations are negatives); positives average 33.5 non-empty messages vs 12.7 for negatives, a shortcut risk for TASK-15.
+
+Added a Sources section to docs/pan2012-structure.md and docs/references/README.md (citations, links, what each source supports; no PDFs committed, since redistribution terms are unchecked).
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

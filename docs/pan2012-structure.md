@@ -118,3 +118,13 @@ exceed 150).
 
 One flipped positive moves recall by about 1/3,737, or 0.027%. We restated gate 3 as zero flipped
 decisions; see `docs/spike-b-tolerances.md` and its decision log.
+
+## Sources
+
+- Inches and Crestani (2012), overview of PAN-2012: corpus construction and the two label files.
+- Villatoro-Tello et al. (2012), PAN-2012 winning notebook: origin of VTPAN and the suspicious-conversation
+  definition.
+- Vogt, Leser and Akbik (2021), early sexual predator detection: latency-weighted F1, PANC, and the
+  limits of PAN-2012 segments.
+- An et al. (2025), turn-level early detection: the metric applied to turns, and PANC statistics.
+- Full citations, links and what each source was used for: [`docs/references/`](references/README.md).
