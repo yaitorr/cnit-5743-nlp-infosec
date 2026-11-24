@@ -18,6 +18,7 @@ PAN = "pan12-sexual-predator-identification"
 TRAIN_DIR = f"{PAN}-training-corpus-2012-05-01"
 TEST_DIR = f"{PAN}-test-corpus-2012-05-21"
 SEGMENT_CAP = 150  # the organisers kept only conversations of at most 150 messages
+MIN_MESSAGES = 6  # the VTPAN and PANC filters drop segments shorter than this
 
 
 def read_lines(path: Path) -> list[str]:
@@ -36,6 +37,18 @@ def summarise(values: list[int]) -> dict[str, float]:
     }
 
 
+def class_profile(rows: list[tuple[int, int]]) -> dict[str, float]:
+    """Length and author-count profile of one class; rows are (non-empty messages, authors)."""
+    lengths = [length for length, _ in rows]
+    return {
+        "nonempty_messages": summarise(lengths) | {"mean": round(statistics.fmean(lengths), 1)},
+        f"share_with_at_least_{MIN_MESSAGES}_nonempty_messages": round(
+            sum(n >= MIN_MESSAGES for n in lengths) / len(rows), 3
+        ),
+        "share_with_exactly_two_authors": round(sum(a == 2 for _, a in rows) / len(rows), 3),
+    }
+
+
 def inspect_split(
     xml_path: Path, predators: set[str], suspicious: dict[str, set[int]] | None
 ) -> dict:
@@ -43,6 +56,7 @@ def inspect_split(
     n_empty_msg = n_no_nonempty = lines_not_contiguous = 0
     lengths: list[int] = []
     nonempty_lengths: list[int] = []
+    by_class: dict[bool, list[tuple[int, int]]] = {True: [], False: []}
     n_authors: Counter[int] = Counter()
     lines_not_increasing = time_any_backward = time_multi_backward = 0
     pos_without_suspicious = 0
@@ -83,6 +97,7 @@ def inspect_split(
         time_multi_backward += backward > 1
 
         hit = predators & set(authors)
+        by_class[bool(hit)].append((nonempty, len(set(authors))))
         if hit:
             n_pos += 1
             predators_seen |= hit
@@ -93,6 +108,10 @@ def inspect_split(
     # Only multi-author sets: a lone author recurring says nothing about segmentation.
     repeated = sum(c for a, c in author_sets.items() if len(a) > 1 and c > 1)
     result = {
+        "by_class": {
+            "positive": class_profile(by_class[True]),
+            "negative": class_profile(by_class[False]),
+        },
         "conversations": n_conv,
         "messages": n_msg,
         "positive_conversations": n_pos,

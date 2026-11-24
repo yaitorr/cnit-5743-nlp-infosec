@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T11:50:00Z'
+updated_date: '2026-11-24T12:02:00Z'
 labels:
   - data
   - boilerplate
@@ -54,6 +54,8 @@ Decision (2026-11-24, owner): positive conversation = contains at least one prob
 Adversarial code review (AGENTS.md gate) fixed: missing label files now raise, root cleared in iterparse (peak ~98 MB), train no longer reports a misleading 0 for problem-2 metric, time-inversion metric split to separate midnight wraps (503/1,095 any step; 6/4 multiple), author-set metric restricted to multi-author sets, docs cite the paper for source claims. Declined: dataclass/argparse refactor (one-off spike script).
 
 Owner decisions (2026-11-24) after reading the eSPD-datasets processing code: position is counted in non-empty messages; assume VTPAN and PANC are unavailable and clean PAN-2012 ourselves (eSPD is a reference only). Added measurements: 6,453 test / 2,976 train empty-text messages; 27 / 13 conversations with no non-empty message; line numbers contiguous 1..n; corpus XMLs are CRLF so their sha256 differs from eSPD's dos2unix copies (label files match). Documented in docs/pan2012-structure.md and data/README.md. Handoff for TASK-3: position unit and data scope above.
+
+Added class profile (positives vs negatives: length, author count) to the script, JSON and docs; corrected VTPAN origin to Villatoro-Tello et al. 2012 per Vogt et al. 2021 s2.2.2. Test positives never exceed 150 messages (all over-cap conversations are negatives); positives average 33.5 non-empty messages vs 12.7 for negatives, a shortcut risk for TASK-15.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

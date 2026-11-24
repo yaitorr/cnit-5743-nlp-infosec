@@ -67,6 +67,22 @@ section 4.2). 2,903 of the 3,737 positives have no problem-2 line.
 
 The corpus ships with a fixed train/test split (30% released as training); we keep it.
 
+## Class profile
+
+Positives and negatives differ in shape, so length and author count are possible shortcuts that a
+detector could use instead of grooming content (test split; train is similar).
+
+| | Positives | Negatives |
+|---|---|---|
+| Median / mean non-empty messages | 5 / 33.5 | 4 / 12.7 |
+| 90th percentile / max | 111 / 150 | 36 / 1,023 |
+| Share with at least 6 non-empty messages | 48.4% | 25.5% |
+| Share with exactly two authors | 50.5% | 68.7% |
+
+All conversations that exceed the 150-message cap are negatives in the test split (maximum positive
+length 150). TASK-15 should test whether detectors rely on length or author count. Half of the
+positives have fewer than 6 messages, which is the minimum length the VTPAN and PANC filters keep.
+
 ## Data quality and processing decisions
 
 ### Empty messages
@@ -81,8 +97,10 @@ exceed 150).
 
 - **Position unit:** a conversation's position is counted in non-empty messages, so empty lines
   need no special handling in the harness or the metrics.
-- **Data scope:** we assume VTPAN (a list of 6,588 train and 15,329 test PAN-2012 conversation ids in the
-  eSPD-datasets repository; its origin and selection criteria are not documented there) and PANC are not available. We evaluate on the full PAN-2012 test split and clean it
+- **Data scope:** we assume VTPAN (a roughly 10% subset of PAN-2012 segments, 6,588 train and 15,329 test conversation ids in
+  the eSPD-datasets repository, built by Villatoro-Tello et al. (2012) by removing single-participant
+  segments, segments with fewer than 6 interactions per user, and ASCII-art noise; Vogt et al. 2021,
+  section 2.2.2) and PANC are not available. We evaluate on the full PAN-2012 test split and clean it
   ourselves. The eSPD-datasets repository (MIT-licensed code) is a reference for processing choices,
   not a dependency.
 - **Corpus bytes:** the XML files contain CRLF line endings. Their sha256 therefore differs from the
