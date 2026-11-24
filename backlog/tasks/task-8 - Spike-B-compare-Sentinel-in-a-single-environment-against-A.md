@@ -4,11 +4,12 @@ title: 'Spike B: compare Sentinel in a single environment against A'
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-18T11:13:00Z'
+updated_date: '2026-11-24T10:38:00Z'
 labels:
   - sentinel
   - d1
   - boilerplate
+  - track-tech
 milestone: m-0
 dependencies:
   - TASK-7

@@ -2,7 +2,9 @@
 
 Rules for AI coding agents working in this repository. Humans: these are also the project's working rules.
 
-New to this repository? Follow `ONBOARDING.md` (Claude Code: `/onboard`).
+New to this repository, or the person you work with is? Follow `ONBOARDING.md` (Claude Code:
+`/onboard`). If they are already set up, do not re-run it; run `uv run --no-project scripts/doctor.py`
+only when a tool is missing or a command fails.
 
 ## Data handling (the repo is public)
 
@@ -35,6 +37,18 @@ not for the author.
 Agents scaffold plumbing, tooling, and checks. The core logic (dataset loaders, metrics, and the evaluation
 harness) is designed and written by the project authors; agents explain options and review rather than
 author it unprompted.
+
+## Finding work in Backlog
+
+Agents: read the board with the CLI, using `--plain`, and never edit files in `backlog/` by hand.
+If `backlog` is not found or is too old, follow Step 1 of `ONBOARDING.md` to install it.
+
+- `backlog task list --labels track-policy --plain` (also `track-tech`, `track-both`): work by track.
+- `backlog task list --labels pickup-ready --unassigned --plain`: can start now, nobody has claimed it.
+- `backlog task view TASK-N --plain`: description, acceptance criteria, notes, and the dependency graph.
+  A task whose dependencies are not Done cannot really start, whatever its label.
+- Show your human the options and let them choose. Do not claim, start, or reassign a task for them
+  unless they ask. Full walkthrough: "Reading the backlog from the command line" in `ONBOARDING.md`.
 
 ## Collaboration workflow
 

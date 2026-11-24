@@ -66,6 +66,26 @@ Read, in this order:
 
 Then ask the contributor to say back, in their own words, what the project measures and why it has two detectors.
 
+### Reading the backlog from the command line
+
+Add `--plain` to read commands so the output is plain text. Never edit files in `backlog/` by hand.
+
+```bash
+backlog task list --plain                                  # everything, grouped by status
+backlog task list --labels track-policy --plain            # work for the policy track
+backlog task list --labels pickup-ready --unassigned --plain  # can start now, nobody has claimed it
+backlog task view TASK-21 --plain                          # description, ACs, notes, dependencies
+backlog search "threshold" --plain                         # find a task by keyword
+backlog board                                              # Kanban view in the terminal
+```
+
+Labels that say who a task is for: `track-policy` (policy work), `track-tech` (code and experiments),
+`track-both` (needs both). `pickup-ready` marks tasks with no unfinished dependencies.
+
+In `task view`, the Dependency Graph shows what a task waits on (`Depends on`) and what waits on it
+(`Dependents`). A task whose dependencies are not Done cannot really start yet, whatever its label.
+Acceptance criteria (`ac: 0/4`) are the checklist for "done"; read them before you claim a task.
+
 ## Step 4: agree how you will work
 
 Follow the collaboration workflow in `AGENTS.md`: claim a task in Backlog, work on a branch named
@@ -77,7 +97,9 @@ before finishing one. Every task carries the project Definition of Done.
 
 Ask what the contributor wants to take on, then look at open tasks that fit their role and skills. For analysis
 and policy roles, good candidates are tasks that need review, framing, or written analysis rather than code
-(for example the d1 question set and the review-threshold analysis). If the work they have in mind has no task
+(for example the taxonomy and the review-threshold framing). Start from
+`backlog task list --labels track-policy --plain`, then `--labels pickup-ready --unassigned` for what can
+start now. Claim a task with the command in `AGENTS.md` before you begin. If the work they have in mind has no task
 yet, propose one using `backlog instructions task-creation`, and get the repo owner's approval before creating it.
 
 ## When something is wrong
