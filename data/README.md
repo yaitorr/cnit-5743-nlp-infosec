@@ -33,7 +33,7 @@ Zenodo publishes only an md5; sha256 was computed locally. The md5 matched Zenod
 | `pan12-sexual-predator-identification-test-corpus-2012-05-21.zip` (inner) | 63584232 | `2dc28233f49d083f0c71a7007a4290f154b37d667195535088b554b93ad2a56d` |
 
 Layout: the three zips sit in `data/pan2012/archive/`; both inner zips are extracted next to it under
-`data/pan2012/`. To verify a copy: `shasum -a 256 data/pan2012/archive/*.zip`.
+`data/pan2012/`. The corpus XML files use CRLF line endings, so their hashes differ from copies normalised with `dos2unix` (for example in the eSPD-datasets repository); the label files match. To verify a copy: `shasum -a 256 data/pan2012/archive/*.zip`.
 
 ## Terms of use
 

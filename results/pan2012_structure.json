@@ -1,0 +1,185 @@
+{
+  "train": {
+    "by_class": {
+      "positive": {
+        "nonempty_messages": {
+          "min": 0.0,
+          "median": 5.0,
+          "p90": 114.0,
+          "max": 1160.0,
+          "mean": 39.1
+        },
+        "share_with_at_least_6_nonempty_messages": 0.497,
+        "share_with_exactly_two_authors": 0.54
+      },
+      "negative": {
+        "nonempty_messages": {
+          "min": 0.0,
+          "median": 4.0,
+          "p90": 35.0,
+          "max": 494.0,
+          "mean": 12.7
+        },
+        "share_with_at_least_6_nonempty_messages": 0.253,
+        "share_with_exactly_two_authors": 0.688
+      }
+    },
+    "conversations": 66927,
+    "messages": 903607,
+    "positive_conversations": 2016,
+    "negative_conversations": 64911,
+    "predator_ids_listed": 142,
+    "predator_ids_present_in_xml": 142,
+    "conversations_over_150_messages": 55,
+    "messages_per_conversation": {
+      "min": 1.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1166.0
+    },
+    "messages_with_empty_text": 2976,
+    "conversations_with_no_nonempty_message": 13,
+    "conversations_over_150_nonempty_messages": 55,
+    "nonempty_messages_per_conversation": {
+      "min": 0.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1160.0
+    },
+    "conversations_with_lines_not_1_to_n": 0,
+    "distinct_authors_per_conversation": {
+      "1": 12773,
+      "2": 45741,
+      "3": 2754,
+      "4": 1502,
+      "5": 1000,
+      "6": 773,
+      "7": 571,
+      "8": 408,
+      "9": 314,
+      "10": 250,
+      "11": 184,
+      "12": 120,
+      "13": 131,
+      "14": 83,
+      "15": 73,
+      "16": 70,
+      "17": 39,
+      "18": 35,
+      "19": 29,
+      "20": 22,
+      "21": 13,
+      "22": 10,
+      "23": 8,
+      "24": 5,
+      "25": 5,
+      "26": 7,
+      "27": 6,
+      "30": 1
+    },
+    "conversations_with_non_increasing_line_numbers": 0,
+    "conversations_with_any_backward_time_step": 503,
+    "conversations_with_multiple_backward_time_steps": 6,
+    "multi_author_conversations_sharing_author_set_with_another": 3565
+  },
+  "test": {
+    "by_class": {
+      "positive": {
+        "nonempty_messages": {
+          "min": 0.0,
+          "median": 5.0,
+          "p90": 111.0,
+          "max": 150.0,
+          "mean": 33.5
+        },
+        "share_with_at_least_6_nonempty_messages": 0.484,
+        "share_with_exactly_two_authors": 0.505
+      },
+      "negative": {
+        "nonempty_messages": {
+          "min": 0.0,
+          "median": 4.0,
+          "p90": 36.0,
+          "max": 1023.0,
+          "mean": 12.7
+        },
+        "share_with_at_least_6_nonempty_messages": 0.255,
+        "share_with_exactly_two_authors": 0.687
+      }
+    },
+    "conversations": 155128,
+    "messages": 2058781,
+    "positive_conversations": 3737,
+    "negative_conversations": 151391,
+    "predator_ids_listed": 254,
+    "predator_ids_present_in_xml": 254,
+    "conversations_over_150_messages": 13,
+    "messages_per_conversation": {
+      "min": 1.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1024.0
+    },
+    "messages_with_empty_text": 6453,
+    "conversations_with_no_nonempty_message": 27,
+    "conversations_over_150_nonempty_messages": 13,
+    "nonempty_messages_per_conversation": {
+      "min": 0.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1023.0
+    },
+    "conversations_with_lines_not_1_to_n": 0,
+    "distinct_authors_per_conversation": {
+      "1": 29561,
+      "2": 105862,
+      "3": 6473,
+      "4": 3465,
+      "5": 2425,
+      "6": 1770,
+      "7": 1303,
+      "8": 963,
+      "9": 717,
+      "10": 588,
+      "11": 439,
+      "12": 336,
+      "13": 264,
+      "14": 214,
+      "15": 157,
+      "16": 156,
+      "17": 108,
+      "18": 72,
+      "19": 60,
+      "20": 55,
+      "21": 28,
+      "22": 32,
+      "23": 23,
+      "24": 16,
+      "25": 8,
+      "26": 5,
+      "27": 4,
+      "28": 8,
+      "29": 4,
+      "30": 2,
+      "31": 1,
+      "32": 2,
+      "35": 1,
+      "37": 1,
+      "43": 1,
+      "54": 1,
+      "74": 1,
+      "92": 1,
+      "115": 1
+    },
+    "conversations_with_non_increasing_line_numbers": 0,
+    "conversations_with_any_backward_time_step": 1095,
+    "conversations_with_multiple_backward_time_steps": 4,
+    "multi_author_conversations_sharing_author_set_with_another": 8730,
+    "positives_with_no_suspicious_line_in_problem2": 2903
+  },
+  "predator_ids_shared_between_train_and_test": 2,
+  "problem2_test": {
+    "conversations_with_suspicious_lines": 834,
+    "suspicious_lines": 6478
+  }
+}

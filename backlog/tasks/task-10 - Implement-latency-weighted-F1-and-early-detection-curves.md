@@ -4,7 +4,7 @@ title: Implement latency-weighted F1 and early-detection curves
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T10:38:00Z'
+updated_date: '2026-11-24T12:16:00Z'
 labels:
   - metrics
   - track-tech
@@ -43,4 +43,6 @@ Latency-weighted F1 (Vogt et al., 2021) is the main metric because it discounts 
 
 <!-- SECTION:NOTES:BEGIN -->
 Policy input: TASK-22 recommends what counts as early (how many messages in). Read it when designing the latency weighting. This is a recommendation, not a dependency; TASK-10 does not wait on it.
+
+Input from TASK-2 (see docs/pan2012-structure.md). Position unit is non-empty messages. Open: how to set the latency penalty parameter p without message-level risk labels (Vogt et al. 2021 set p so the penalty is 0.5 at about 20 grooming messages using ChatCoder2 labels, which we lack; the median-length alternative is discussed there). Median conversation is 4 non-empty messages (positives: median 5, mean 33.5), so earliness here is within short segments, not whole chats; state this as a limitation. Spike B gate 3 is zero flipped decisions, which the metric's median-based speed term makes hard to bound otherwise.
 <!-- SECTION:NOTES:END -->
