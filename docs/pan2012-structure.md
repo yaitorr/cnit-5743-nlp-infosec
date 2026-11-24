@@ -81,8 +81,8 @@ exceed 150).
 
 - **Position unit:** a conversation's position is counted in non-empty messages, so empty lines
   need no special handling in the harness or the metrics.
-- **Data scope:** we assume VTPAN (a published subset of PAN-2012 conversation ids from Vogt et al.,
-  ACL 2021) and PANC are not available. We evaluate on the full PAN-2012 test split and clean it
+- **Data scope:** we assume VTPAN (a list of 6,588 train and 15,329 test PAN-2012 conversation ids in the
+  eSPD-datasets repository; its origin and selection criteria are not documented there) and PANC are not available. We evaluate on the full PAN-2012 test split and clean it
   ourselves. The eSPD-datasets repository (MIT-licensed code) is a reference for processing choices,
   not a dependency.
 - **Corpus bytes:** the XML files contain CRLF line endings. Their sha256 therefore differs from the
