@@ -30,6 +30,7 @@ d1 = [
 dev = [
     "pytest>=8",
     "ruff>=0.8",
+    "rumdl>=0.3",
 ]
 # Analysis notebooks + static export. Notebooks read committed aggregate results only,
 # never data/, so the exported site can be built anywhere (including CI).

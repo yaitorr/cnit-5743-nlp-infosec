@@ -1,0 +1,12 @@
+# Markdown lint for hand-written docs. Only line length is enabled for now (matches ruff's 100).
+[global]
+enable = ["MD013"]
+# backlog/ is written by the `backlog` CLI, which stores each description and note as one long
+# line, and AGENTS.md rules out editing those files by hand.
+exclude = ["backlog/"]
+
+[MD013]
+line-length = 100
+# Shell commands and tables cannot be wrapped without changing what they mean.
+code-blocks = false
+tables = false

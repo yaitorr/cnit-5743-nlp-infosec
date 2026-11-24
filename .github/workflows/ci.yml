@@ -42,5 +42,8 @@ jobs:
       - name: Format check
         run: uv run ruff format --check .
 
+      - name: Markdown line length
+        run: uv run rumdl check .
+
       - name: Tests
         run: uv run pytest -q

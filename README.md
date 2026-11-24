@@ -26,20 +26,29 @@ Sentinel scores (sentinel env), then d1 reviews the flagged conversations (d1 en
 
 ## Checks
 
-Every pull request into `main` runs `.github/workflows/ci.yml` on Linux:
-`uv sync --locked`, `ruff check`, `ruff format --check`, and `pytest`. To run the same checks locally:
+Every pull request into `main` runs `.github/workflows/ci.yml` on Linux: `uv sync --locked`,
+`ruff check`, `ruff format --check`, `rumdl check` (Markdown lines of at most 100 characters,
+`backlog/` excluded), and `pytest`. To run the same checks locally:
 
 ```bash
-uv sync --locked && uv run ruff check . && uv run ruff format --check . && uv run pytest -q
+uv sync --locked && uv run ruff check . && uv run ruff format --check . && uv run rumdl check . \
+  && uv run pytest -q
 ```
+
+To rewrap a Markdown file that is over the limit, run
+`uv run rumdl check --fix --config 'MD013.reflow = true' <file>`.
 
 **What CI does not cover.** It installs only the shared and dev dependencies, so:
 
-- Windows is not covered: CI runs on Linux only, so the Windows onboarding path stays untested until someone runs it.
-- The Sentinel and d1 environments are never built or run in CI (they are large, and d1 downloads model weights).
-- Nothing that needs data runs: CI has no datasets. The hygiene test only checks that none are tracked.
+- Windows is not covered: CI runs on Linux only, so the Windows onboarding path stays untested until
+  someone runs it.
+- The Sentinel and d1 environments are never built or run in CI (they are large, and d1 downloads
+  model weights).
+- Nothing that needs data runs: CI has no datasets. The hygiene test only checks that none are
+  tracked.
 - Model behavior and experiment results are not checked, only the code around them.
-- `scripts/doctor.py` is covered by its unit tests, not by running its real tool checks on the runner.
+- `scripts/doctor.py` is covered by its unit tests, not by running its real tool checks on the
+  runner.
 - The results-site export is built by the Pages workflow on pushes to `main`, not on pull requests.
 
 ## Layout
@@ -63,13 +72,14 @@ This repository is public. Raw chats, Sentinel indexes, and embeddings are never
 ## Results site
 
 Aggregate results are published as a static marimo export via GitHub Pages
-(`.github/workflows/pages.yml`). The datasets cannot be redistributed, so the site never includes them.
-Notebooks hide their code by default; see `AGENTS.md`.
+(`.github/workflows/pages.yml`). The datasets cannot be redistributed, so the site never includes
+them. Notebooks hide their code by default; see `AGENTS.md`.
 
 ## License
 
-Code is MIT-licensed (see `LICENSE`). The license covers this repository's code only, not the datasets
-or the third-party models and libraries it uses (Sentinel is Apache-2.0; d1 is under the LFM Open License v1.0).
+Code is MIT-licensed (see `LICENSE`). The license covers this repository's code only, not the
+datasets or the third-party models and libraries it uses (Sentinel is Apache-2.0; d1 is under the
+LFM Open License v1.0).
 
 ## Pinned third-party artifacts
 

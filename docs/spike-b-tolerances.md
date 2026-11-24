@@ -10,8 +10,8 @@ reference environment (A: `sentence-transformers<4`, `transformers<5`, `numpy<2`
 
 ## Method
 
-Score the same fixed texts with the same index in both environments and compare. Comparison texts are
-synthetic or benign, or kept local under `artifacts/`; only aggregate differences are committed.
+Score the same fixed texts with the same index in both environments and compare. Comparison texts
+are synthetic or benign, or kept local under `artifacts/`; only aggregate differences are committed.
 
 ## Step 0: noise floor
 
@@ -36,8 +36,8 @@ B is accepted only if **all** gates pass.
   "zero flipped decisions" or loosen it, and record the reason here.
 - Gate 3 must also be smaller than the smallest detector-vs-detector gap we intend to claim.
 - Gates 1 and 2 use judgment values (10x, 0.999, 99.5%), confirmed as-is on 2026-11-18. Rationale to
-  state if asked: 10x leaves headroom above numerical noise while staying far below what a tokenization
-  change would cause (expectation, not yet measured).
+  state if asked: 10x leaves headroom above numerical noise while staying far below what a
+  tokenization change would cause (expectation, not yet measured).
 
 ## Decision log
 
