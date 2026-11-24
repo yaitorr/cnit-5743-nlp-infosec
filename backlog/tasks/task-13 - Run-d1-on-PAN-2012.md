@@ -4,10 +4,11 @@ title: Run d1 on PAN-2012
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-18T11:13:00Z'
+updated_date: '2026-11-24T10:38:00Z'
 labels:
   - d1
   - experiment
+  - track-tech
 milestone: m-1
 dependencies:
   - TASK-9

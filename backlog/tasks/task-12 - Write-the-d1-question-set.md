@@ -4,12 +4,14 @@ title: Write the d1 question set
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-18T11:13:00Z'
+updated_date: '2026-11-24T10:40:00Z'
 labels:
   - d1
+  - track-both
 milestone: m-1
 dependencies:
   - TASK-6
+  - TASK-21
 references:
   - https://doi.org/10.1016/j.chiabu.2021.105392
   - https://doi.org/10.18653/v1/2025.naacl-long.241
@@ -28,7 +30,7 @@ d1 answers typed questions with calibrated probabilities, so the questions encod
 - [ ] #1 Question set versioned in the repo with type (yes/no, choice or score) and criteria per question
 - [ ] #2 Context-only questions are marked and excluded from alert logic
 - [ ] #3 Each question traces to a strategy in the grooming-strategy taxonomy
-- [ ] #4 Reviewed by the policy lead
+- [ ] #4 Explicit-versus-inferred framing decided by David as policy lead and written down, and Yai has reviewed that every question is answerable by d1 in its declared type (yes/no, choice or score)
 <!-- AC:END -->
 
 ## Definition of Done
@@ -39,3 +41,9 @@ d1 answers typed questions with calibrated probabilities, so the questions encod
 - [ ] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
 - [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Hand-off: David (policy lead) owns this task and its framing. This task waits on TASK-21 (taxonomy) and TASK-6 (d1 smoke test). Once TASK-21 is done, question drafting and mapping to the taxonomy can proceed while TASK-6 is still in progress; a working model is only needed for a final sanity check.
+<!-- SECTION:NOTES:END -->
