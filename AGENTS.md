@@ -2,7 +2,9 @@
 
 Rules for AI coding agents working in this repository. Humans: these are also the project's working rules.
 
-New to this repository? Follow `ONBOARDING.md` (Claude Code: `/onboard`).
+New to this repository, or the person you work with is? Follow `ONBOARDING.md` (Claude Code:
+`/onboard`). If they are already set up, do not re-run it; run `uv run --no-project scripts/doctor.py`
+only when a tool is missing or a command fails.
 
 ## Data handling (the repo is public)
 
@@ -39,6 +41,7 @@ author it unprompted.
 ## Finding work in Backlog
 
 Agents: read the board with the CLI, using `--plain`, and never edit files in `backlog/` by hand.
+If `backlog` is not found or is too old, follow Step 1 of `ONBOARDING.md` to install it.
 
 - `backlog task list --labels track-policy --plain` (also `track-tech`, `track-both`): work by track.
 - `backlog task list --labels pickup-ready --unassigned --plain`: can start now, nobody has claimed it.
