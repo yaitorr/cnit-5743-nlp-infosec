@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T11:31:00Z'
+updated_date: '2026-11-24T11:35:00Z'
 labels:
   - data
   - boilerplate
@@ -37,7 +37,7 @@ Measuring how far into a conversation each detector first flags it requires know
 - [x] #2 No data, derived artifacts, or raw chat text committed or displayed (hygiene test passes)
 - [ ] #3 If output was produced (table, figure, page): rendered result inspected, not just executed
 - [x] #4 Steps to reproduce recorded (commands, seeds, pinned versions and model revisions)
-- [ ] #5 Decisions and reasoning written down, and the owner can explain them without help
+- [x] #5 Decisions and reasoning written down, and the owner can explain them without help
 <!-- DOD:END -->
 
 ## Implementation Plan
@@ -53,3 +53,9 @@ Decision (2026-11-24, owner): positive conversation = contains at least one prob
 
 Adversarial code review (AGENTS.md gate) fixed: missing label files now raise, root cleared in iterparse (peak ~98 MB), train no longer reports a misleading 0 for problem-2 metric, time-inversion metric split to separate midnight wraps (503/1,095 any step; 6/4 multiple), author-set metric restricted to multi-author sets, docs cite the paper for source claims. Declined: dataclass/argparse refactor (one-off spike script).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Positive conversation = contains at least one problem-1 predator author: P = 3,737 test (2.4%), 2,016 train (3.0%) of 155,128 / 66,927 conversations. Problem-2 lines were rejected as a label: they are participant-submitted lines judged by one expert (Inches & Crestani s4.2), and 2,903 of the 3,737 test positives have none. Structure: conversation id is the grouping key; `line` orders messages (0 violations); HH:MM `time` is unreliable across midnight wraps, so position is counted in messages. Organisers split chats at 25-minute gaps and kept at most 150 messages (55 train / 13 test exceed it), so earliest-detection is bounded by one segment; this motivates PANC. Spike B gate 3 restated from 0.1% relative F1 to zero flipped decisions (one flipped positive is ~0.027% of recall; 0.1% would have allowed three), with a dated decision-log row. Verification: ruff and pytest (18) pass; an adversarial code-reviewer sub-agent found 10 issues, 8 fixed and 2 declined with reasons (see notes). Not verified: rendered inspection of the markdown tables (DoD 3), left unchecked. Follow-up: TASK-3 (loader interface) is unblocked and is authored by the project owners.
+<!-- SECTION:FINAL_SUMMARY:END -->
