@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@yaitorr'
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T11:37:00Z'
+updated_date: '2026-11-24T11:50:00Z'
 labels:
   - data
   - boilerplate
@@ -52,6 +52,8 @@ Measuring how far into a conversation each detector first flags it requires know
 Decision (2026-11-24, owner): positive conversation = contains at least one problem-1 predator author. Problem-2 lines rejected as a label: they are only participant-submitted lines judged by one expert (paper s4.2); 2,903 of 3,737 test positives have none. Gate 3 restated to zero flipped decisions (P=3,737, so 0.1% would allow ~3 flips). Observed: 55 train / 13 test conversations exceed the 150-message cap the paper describes. Reproduce: uv run python scripts/inspect_pan2012.py <repo>/data/pan2012 > results/pan2012_structure.json (stdlib only, no seeds).
 
 Adversarial code review (AGENTS.md gate) fixed: missing label files now raise, root cleared in iterparse (peak ~98 MB), train no longer reports a misleading 0 for problem-2 metric, time-inversion metric split to separate midnight wraps (503/1,095 any step; 6/4 multiple), author-set metric restricted to multi-author sets, docs cite the paper for source claims. Declined: dataclass/argparse refactor (one-off spike script).
+
+Owner decisions (2026-11-24) after reading the eSPD-datasets processing code: position is counted in non-empty messages; assume VTPAN and PANC are unavailable and clean PAN-2012 ourselves (eSPD is a reference only). Added measurements: 6,453 test / 2,976 train empty-text messages; 27 / 13 conversations with no non-empty message; line numbers contiguous 1..n; corpus XMLs are CRLF so their sha256 differs from eSPD's dos2unix copies (label files match). Documented in docs/pan2012-structure.md and data/README.md. Handoff for TASK-3: position unit and data scope above.
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

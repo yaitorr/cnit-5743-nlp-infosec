@@ -67,6 +67,28 @@ section 4.2). 2,903 of the 3,737 positives have no problem-2 line.
 
 The corpus ships with a fixed train/test split (30% released as training); we keep it.
 
+## Data quality and processing decisions
+
+### Empty messages
+
+6,453 test (2,976 train) messages have empty or whitespace-only text, and 27 test (13 train)
+conversations have no non-empty message at all. Line numbers are contiguous (1 to n) in every
+conversation, so empty messages are present but numbered. The 150-message count and the
+distribution of lengths are unchanged by excluding them (55 train and 13 test conversations still
+exceed 150).
+
+### Decisions (project owner, 2026-11-24)
+
+- **Position unit:** a conversation's position is counted in non-empty messages, so empty lines
+  need no special handling in the harness or the metrics.
+- **Data scope:** we assume VTPAN (a published subset of PAN-2012 conversation ids from Vogt et al.,
+  ACL 2021) and PANC are not available. We evaluate on the full PAN-2012 test split and clean it
+  ourselves. The eSPD-datasets repository (MIT-licensed code) is a reference for processing choices,
+  not a dependency.
+- **Corpus bytes:** the XML files contain CRLF line endings. Their sha256 therefore differs from the
+  eSPD repository's `dos2unix` copies, while the problem-1 and predator list files match exactly.
+  Parsing is unaffected.
+
 ## Consequence for Spike B gate 3
 
 One flipped positive moves recall by about 1/3,737, or 0.027%. We restated gate 3 as zero flipped

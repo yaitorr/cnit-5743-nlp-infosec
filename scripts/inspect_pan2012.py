@@ -39,8 +39,10 @@ def summarise(values: list[int]) -> dict[str, float]:
 def inspect_split(
     xml_path: Path, predators: set[str], suspicious: dict[str, set[int]] | None
 ) -> dict:
-    n_conv = n_msg = n_pos = over_cap = 0
+    n_conv = n_msg = n_pos = over_cap = over_cap_nonempty = 0
+    n_empty_msg = n_no_nonempty = lines_not_contiguous = 0
     lengths: list[int] = []
+    nonempty_lengths: list[int] = []
     n_authors: Counter[int] = Counter()
     lines_not_increasing = time_any_backward = time_multi_backward = 0
     pos_without_suspicious = 0
@@ -65,6 +67,13 @@ def inspect_split(
         n_msg += len(msgs)
         lengths.append(len(msgs))
         over_cap += len(msgs) > SEGMENT_CAP
+        # A message counts only if its text has non-whitespace content (the position unit).
+        nonempty = sum(bool((m.findtext("text") or "").strip()) for m in msgs)
+        nonempty_lengths.append(nonempty)
+        n_empty_msg += len(msgs) - nonempty
+        n_no_nonempty += nonempty == 0
+        over_cap_nonempty += nonempty > SEGMENT_CAP
+        lines_not_contiguous += lines != list(range(1, len(lines) + 1))
         n_authors[len(set(authors))] += 1
         author_sets[frozenset(authors)] += 1
         lines_not_increasing += not all(a < b for a, b in pairwise(lines))
@@ -92,6 +101,11 @@ def inspect_split(
         "predator_ids_present_in_xml": len(predators_seen),
         "conversations_over_150_messages": over_cap,
         "messages_per_conversation": summarise(lengths),
+        "messages_with_empty_text": n_empty_msg,
+        "conversations_with_no_nonempty_message": n_no_nonempty,
+        "conversations_over_150_nonempty_messages": over_cap_nonempty,
+        "nonempty_messages_per_conversation": summarise(nonempty_lengths),
+        "conversations_with_lines_not_1_to_n": lines_not_contiguous,
         "distinct_authors_per_conversation": dict(sorted(n_authors.items())),
         "conversations_with_non_increasing_line_numbers": lines_not_increasing,
         "conversations_with_any_backward_time_step": time_any_backward,

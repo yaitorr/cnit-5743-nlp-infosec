@@ -13,6 +13,16 @@
       "p90": 38.0,
       "max": 1166.0
     },
+    "messages_with_empty_text": 2976,
+    "conversations_with_no_nonempty_message": 13,
+    "conversations_over_150_nonempty_messages": 55,
+    "nonempty_messages_per_conversation": {
+      "min": 0.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1160.0
+    },
+    "conversations_with_lines_not_1_to_n": 0,
     "distinct_authors_per_conversation": {
       "1": 12773,
       "2": 45741,
@@ -62,6 +72,16 @@
       "p90": 38.0,
       "max": 1024.0
     },
+    "messages_with_empty_text": 6453,
+    "conversations_with_no_nonempty_message": 27,
+    "conversations_over_150_nonempty_messages": 13,
+    "nonempty_messages_per_conversation": {
+      "min": 0.0,
+      "median": 4.0,
+      "p90": 38.0,
+      "max": 1023.0
+    },
+    "conversations_with_lines_not_1_to_n": 0,
     "distinct_authors_per_conversation": {
       "1": 29561,
       "2": 105862,
