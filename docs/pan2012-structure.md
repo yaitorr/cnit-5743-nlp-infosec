@@ -2,7 +2,7 @@
 
 Findings for TASK-2. Aggregate only: no message text, author id or conversation id appears here.
 Reproduce with `uv run python scripts/inspect_pan2012.py <path-to>/data/pan2012 > results/pan2012_structure.json`
-(about 9 seconds; stdlib XML streaming, no extra dependencies). Corpus provenance and checksums are in
+(about 10 seconds and under 100 MB of memory; stdlib only). Corpus provenance and checksums are in
 `data/README.md`. Background: Inches and Crestani, "Overview of the International Sexual Predator
 Identification Competition at PAN-2012".
 
@@ -17,25 +17,29 @@ pseudonymous and consistent across conversations, which is what makes author-lev
 ### Message ordering
 
 `line` is strictly increasing within every conversation (0 violations in both splits), so it is the
-ordering key. `time` is HH:MM only, "might not be the real time" per the corpus readme, and goes
-backwards in 503 train and 1,095 test conversations. Position in a conversation is therefore counted
-in messages, not elapsed time.
+ordering key. `time` is HH:MM only and "might not be the real time" per the corpus readme. It steps
+backwards at least once in 503 train and 1,095 test conversations, but only 6 and 4 conversations
+step backwards more than once, so almost all of these are probably a single midnight wrap rather
+than real disorder (we cannot tell the two apart from HH:MM alone). Either way, HH:MM cannot give
+elapsed time across a wrap, so position in a conversation is counted in messages.
 
 ### Segmentation of long chats
 
 The organisers cut message streams into conversations wherever the gap exceeded 25 minutes and kept
 only conversations of at most 150 messages (paper, section 2.1). A long grooming exchange can
-therefore appear as several conversations. This fits the 30,684 test conversations whose exact
-author set also occurs in another conversation, though there is no session id to prove it. The cap is
+therefore appear as several conversations. This is consistent with 8,730 test (3,565 train)
+multi-author conversations whose exact author set also occurs in another conversation, but that is
+weak evidence (a recurring pair could also be unrelated chats), and there is no session id to prove it. The cap is
 not perfectly applied: 55 train and 13 test conversations exceed 150 messages (maximum 1,166).
 Consequence: the earliest-detection position is bounded by one segment, not a whole relationship,
 which is the motivation for PANC.
 
 ### Sources
 
-Positives come only from Perverted-Justice (PJ) chat logs. Negatives are Omegle (about 95% two-user)
-and IRC logs, so the sources differ in style and a detector could separate by source. Some
-conversations have many authors (up to 115 in test).
+Per the paper (section 2.1 and Table 1), positives come only from Perverted-Justice (PJ) chat logs,
+and negatives are largely Omegle (about 95% two-user) and IRC logs. The sources differ in style, so a
+detector could separate by source. Our own counts show 68% of conversations with exactly two authors
+in both splits, and some with many authors (up to 115 in test).
 
 ## Labels
 
