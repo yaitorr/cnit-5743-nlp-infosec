@@ -4,7 +4,7 @@ title: Implement latency-weighted F1 and early-detection curves
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-25T00:02:00Z'
+updated_date: '2026-11-25T00:08:00Z'
 labels:
   - metrics
   - track-tech
@@ -44,9 +44,10 @@ Latency-weighted F1 (Vogt et al., 2021) is the main metric because it discounts 
 <!-- SECTION:NOTES:BEGIN -->
 Decision (from the TASK-10 latency penalty options doc, 2026-11-24):
 - Headline: latency-weighted F1 (Vogt et al., 2021), with p passed in as an argument. Default p = ln(3)/89 (penalty 0.5 at message 90) for comparability with Vogt; switch to the value derived from TASK-22's "how many messages in is early" (p = ln(3)/(m-1)) once it exists, and log the change. Report F1, speed and F_latency on the full split and on the flagged slice (at least 6 non-empty messages, two authors).
-- Second deliverable: detection-rate curve at a false-positive rate fixed on train (acceptance criterion 2). Expect it to carry most of the earliness story on PAN-2012: p is set for ~90-message chats but half of positives have fewer than 6 non-empty messages, so every warning falls in the flat start of the penalty and F_latency cannot separate a message-1 warning from a message-5 one.
+- Vogt anchor (checked against the paper, Sec. 5.1): they set p so the penalty is 0.5 when about 20 grooming messages have been exchanged, using ChatCoder2 message labels. In the median labelled CC2 chat that is message 90 (standard deviation about 200 messages), hence p = ln(3)/(90-1) = 0.0123. They rejected the conventional anchor at the median chat length (1,055 messages for their full-length chats) as far too late. Latency l counts all messages before the warning, from 1.
+- Second deliverable: detection-rate curve at a false-positive rate fixed on train (acceptance criterion 2). Expect it to carry most of the earliness story on PAN-2012: p puts the penalty at 0.5 only at message 90, but half of positives have fewer than 6 non-empty messages, so every warning falls in the flat start of the penalty and F_latency cannot separate a message-1 warning from a message-5 one.
 - Avoid anchoring p at the median positive length (m = 5): speed would measure segment length, not earliness. Skip ERDE: extra constants and no comparison with the eSPD papers.
-- Limitation to state: PAN-2012 latency is within-segment (segments cut at 25-minute gaps, capped at 150 messages) and is not comparable to PANC speed.
+- Limitation to state: PAN-2012 latency is within-segment (segments cut at 25-minute gaps, capped at 150 messages) and is not comparable to PANC speed. Vogt computes speed on full-length positive chats and F1 on segments; here both are within segments.
 
 Policy input: TASK-22 recommends what counts as early (how many messages in) and candidate false-positive rates for the curve. Read it when setting p and the curve's operating point. This is a recommendation, not a dependency; TASK-10 does not wait on it.
 
