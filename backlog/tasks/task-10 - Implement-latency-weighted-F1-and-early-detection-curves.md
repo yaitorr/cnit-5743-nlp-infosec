@@ -4,7 +4,7 @@ title: Implement latency-weighted F1 and early-detection curves
 status: To Do
 assignee: []
 created_date: 2026-11-18 11:01
-updated_date: '2026-11-24T12:16:00Z'
+updated_date: '2026-11-25T00:02:00Z'
 labels:
   - metrics
   - track-tech
@@ -25,9 +25,9 @@ Latency-weighted F1 (Vogt et al., 2021) is the main metric because it discounts 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Latency-weighted F1 implemented and tested against a hand-computed example
-- [ ] #2 Detection-rate-versus-messages-seen curve at a fixed low false-positive rate
-- [ ] #3 Metrics take scores and labels only, with no dataset dependency
+- [ ] #1 Latency-weighted F1 implemented with the penalty constant p (or anchor m) as an argument, defaulting to p = ln(3)/89, and tested against a hand-computed example (true positives warned at messages 1, 45, 90 with F1 = 0.8 give speed 0.7349 and F_latency 0.5879) plus edge cases: a single true positive at message 1 gives speed 1, and no true positives returns 0
+- [ ] #2 Detection-rate-versus-messages-seen curve at a fixed low false-positive rate (threshold fixed on train; absolute message counts; false-positive rate reached at each k also reported)
+- [ ] #3 Metrics take scores, labels and message positions only, with no dataset dependency
 <!-- AC:END -->
 
 ## Definition of Done
@@ -42,7 +42,13 @@ Latency-weighted F1 (Vogt et al., 2021) is the main metric because it discounts 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Policy input: TASK-22 recommends what counts as early (how many messages in). Read it when designing the latency weighting. This is a recommendation, not a dependency; TASK-10 does not wait on it.
+Decision (from the TASK-10 latency penalty options doc, 2026-11-24):
+- Headline: latency-weighted F1 (Vogt et al., 2021), with p passed in as an argument. Default p = ln(3)/89 (penalty 0.5 at message 90) for comparability with Vogt; switch to the value derived from TASK-22's "how many messages in is early" (p = ln(3)/(m-1)) once it exists, and log the change. Report F1, speed and F_latency on the full split and on the flagged slice (at least 6 non-empty messages, two authors).
+- Second deliverable: detection-rate curve at a false-positive rate fixed on train (acceptance criterion 2). Expect it to carry most of the earliness story on PAN-2012: p is set for ~90-message chats but half of positives have fewer than 6 non-empty messages, so every warning falls in the flat start of the penalty and F_latency cannot separate a message-1 warning from a message-5 one.
+- Avoid anchoring p at the median positive length (m = 5): speed would measure segment length, not earliness. Skip ERDE: extra constants and no comparison with the eSPD papers.
+- Limitation to state: PAN-2012 latency is within-segment (segments cut at 25-minute gaps, capped at 150 messages) and is not comparable to PANC speed.
 
-Input from TASK-2 (see docs/pan2012-structure.md). Position unit is non-empty messages. Open: how to set the latency penalty parameter p without message-level risk labels (Vogt et al. 2021 set p so the penalty is 0.5 at about 20 grooming messages using ChatCoder2 labels, which we lack; the median-length alternative is discussed there). Median conversation is 4 non-empty messages (positives: median 5, mean 33.5), so earliness here is within short segments, not whole chats; state this as a limitation. Spike B gate 3 is zero flipped decisions, which the metric's median-based speed term makes hard to bound otherwise.
+Policy input: TASK-22 recommends what counts as early (how many messages in) and candidate false-positive rates for the curve. Read it when setting p and the curve's operating point. This is a recommendation, not a dependency; TASK-10 does not wait on it.
+
+Input from TASK-2 (see docs/pan2012-structure.md). Position unit is non-empty messages. Median conversation is 4 non-empty messages (positives: median 5, mean 33.5). Spike B gate 3 is zero flipped decisions, which the metric's median-based speed term makes hard to bound otherwise. Open: whether single-author conversations stay in the evaluation (changes both metrics).
 <!-- SECTION:NOTES:END -->
